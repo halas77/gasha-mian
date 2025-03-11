@@ -3,32 +3,32 @@ pragma solidity ^0.8.20;
 
 import {Ownable} from "../lib/openzeppelin-contracts/contracts/access/Ownable.sol";
 
+///////////////
+//// ENUMS ////
+///////////////
+
+enum PolicyStatus {
+    Active,
+    Expired,
+    Canceled
+}
+
+/////////////////
+//// Structs ////
+/////////////////
+
+struct Policy {
+    uint256 policyId;
+    address holder;
+    uint256 premium;
+    uint256 coverageAmount;
+    uint256 startDate;
+    uint256 endDate;
+    PolicyStatus status;
+}
+
 contract InsurancePolicy is Ownable {
     uint256 private nextPolicyId;
-
-    ///////////////
-    //// ENUMS ////
-    ///////////////
-
-    enum PolicyStatus {
-        Active,
-        Expired,
-        Canceled
-    }
-
-    /////////////////
-    //// Structs ////
-    /////////////////
-
-    struct Policy {
-        uint256 policyId;
-        address holder;
-        uint256 premium;
-        uint256 coverageAmount;
-        uint256 startDate;
-        uint256 endDate;
-        PolicyStatus status;
-    }
 
     ////////////////
     //// Errors ////
